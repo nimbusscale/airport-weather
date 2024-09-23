@@ -1,6 +1,8 @@
 import {Component, inject} from '@angular/core';
 import {AirportDataService} from "../airport-data.service";
 import {FormsModule} from "@angular/forms";
+import {WeatherDataService} from "../weather-data.service";
+import {AirportWeatherService} from "../airport-weather.service";
 
 @Component({
   selector: 'app-search-box',
@@ -12,14 +14,14 @@ import {FormsModule} from "@angular/forms";
   styleUrl: './search-box.component.scss'
 })
 export class SearchBoxComponent {
-  private airportDataService: AirportDataService = inject(AirportDataService)
+  private airportWeather: AirportWeatherService = inject(AirportWeatherService)
   searchText: string = ''
 
   constructor() {
   }
 
   getAirportWeatherForecast(airport_code: string) {
-    this.airportDataService.getAirportData(airport_code)
+    this.airportWeather.getWeatherDataForAirport(airport_code)
   }
 
 }

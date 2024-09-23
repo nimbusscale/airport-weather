@@ -66,16 +66,14 @@ export class AirportDataService {
           long: rawAirport.coordinates.split(',')[1].trim(),
         })
       );
-    this.isDataLoaded = true; // Mark data as loaded
+    this.isDataLoaded = true;
   }
 
-  // Ensure data is loaded before executing the callback
   private ensureDataIsLoaded(): Promise<void> {
     if (this.isDataLoaded) {
-      return Promise.resolve(); // Data is already loaded
+      return Promise.resolve();
     }
 
-    // If data is not loaded yet, start loading or return the ongoing loading promise
     if (!this.dataLoadingPromise) {
       this.dataLoadingPromise = this.buildAirportObjectsFromJSON(this.url);
     }
@@ -83,15 +81,15 @@ export class AirportDataService {
     return this.dataLoadingPromise;
   }
 
-  getAirportData(airport_code: string): void {
-    this.ensureDataIsLoaded().then(() => {
+  getAirportData(airport_code: string): Promise<Airport> {
+    return this.ensureDataIsLoaded().then(() => {
       const airport_data = this.airports.find(
         (airport) => airport.code === airport_code
       );
       if (!airport_data) {
         throw new Error(`Unable to find airport code ${airport_code}`);
       }
-      console.log(airport_data);
+      return airport_data
     });
   }
 }
