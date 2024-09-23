@@ -19,7 +19,7 @@ export class SearchBoxComponent {
   }
 
   getAirportWeatherForecast(airport_code: string) {
-    this.airportDataService.getAirportWeatherForecast(airport_code)
+    this.airportDataService.getAirportData(airport_code)
   }
 
 }
