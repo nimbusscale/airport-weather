@@ -14,12 +14,13 @@ import {Weather} from "../weather";
 })
 export class SearchBoxComponent {
   private airportWeatherService: AirportWeatherService = inject(AirportWeatherService)
-  searchText: string = ''
+  searchText = ''
   private weatherData: Weather[] = []
 
   @Output() airportWeather: EventEmitter<Weather[]> = new EventEmitter<Weather[]>();
 
   constructor() {
+    // do nothing.
   }
 
   async getAirportWeatherForecast(airport_code: string): Promise<void> {

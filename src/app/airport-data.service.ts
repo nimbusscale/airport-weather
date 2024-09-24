@@ -11,7 +11,7 @@ export class AirportDataService {
   private url = '/api/@olayway/airport-codes/_r/-/data/airport-codes.csv';
   private rawAirportData: RawAirport[] = [];
   private airports: Airport[] = [];
-  private isDataLoaded: boolean = false; // Flag to track if data is loaded
+  private isDataLoaded = false; // Flag to track if data is loaded
   private dataLoadingPromise: Promise<void> | null = null; // Promise to track data loading
 
   constructor(private http: HttpClient) {}
@@ -47,7 +47,7 @@ export class AirportDataService {
             this.rawAirportData = result.data;
             resolve();
           },
-          error: (error: Error) => {
+          error: () => {
             reject(new Error(`Unable to parse Raw Airport Data from: ${url}`));
           },
         });
