@@ -29,15 +29,7 @@ export class WeatherDataService {
     .append('date', date)
     .append('appid', this.apiKey);
 
-    return lastValueFrom(this.http.get<Weather>(this.apiURL,{params: params}), ).then(
-      (response) => {
-        if (!response) {
-          throw new Error((`Failed to get API data with these params ${params}`))
-        } else {
-          return response
-        }
-      }
-    )
+    return lastValueFrom(this.http.get<Weather>(this.apiURL,{params: params}))
   }
 
   async getWeatherDataForUpcomingDates(lat: string, lon: string, days = 3): Promise<Weather[]> {

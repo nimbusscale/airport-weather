@@ -19,10 +19,10 @@ export class AirportDataService {
   private fetchCSVData(url: string): Promise<string> {
     return lastValueFrom(this.http.get(url, { responseType: 'blob' })).then(
       (blob) => {
-        if (!blob) {
-          throw new Error(`Failed to download file: ${url}`);
-        } else {
+        if (blob.size) {
           return this.convertBlobToText(blob);
+        } else {
+          throw new Error(`Failed to download file: ${url}`);
         }
       }
     );
@@ -31,7 +31,7 @@ export class AirportDataService {
   private convertBlobToText(blob: Blob): Promise<string> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
+      reader.onload = () => {resolve(reader.result as string)};
       reader.onerror = reject;
       reader.readAsText(blob);
     });

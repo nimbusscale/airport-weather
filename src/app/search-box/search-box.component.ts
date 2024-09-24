@@ -19,10 +19,6 @@ export class SearchBoxComponent {
 
   @Output() airportWeather: EventEmitter<Weather[]> = new EventEmitter<Weather[]>();
 
-  constructor() {
-    // do nothing.
-  }
-
   async getAirportWeatherForecast(airport_code: string): Promise<void> {
     this.weatherData = await this.airportWeatherService.getWeatherDataForAirport(airport_code)
     this.airportWeather.emit(this.weatherData)

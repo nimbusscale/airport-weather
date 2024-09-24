@@ -18,7 +18,7 @@ getWeatherDataForAirport(airport_code: string): Promise<Weather[]> {
     .then((airport) => {
       return this.weatherData.getWeatherDataForUpcomingDates(airport.lat, airport.long);
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       console.error(`Error getting weather data for airport ${airport_code}:`, error);
       throw error;
     });
