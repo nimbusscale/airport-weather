@@ -1,5 +1,5 @@
 <div class="weather-output">
-  @for (weatherCard of weatherCards; track weatherCard.date) {
-    {{weatherCard}}
+  @for (weatherData of airportWeather; track weatherData.date) {
+    <app-weather-card [date]="weatherData.date" [high]="weatherData.temperature.max" [low]="weatherData.temperature.min"/>
   }
 </div>

@@ -1,8 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {AirportDataService} from "../airport-data.service";
+import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {FormsModule} from "@angular/forms";
-import {WeatherDataService} from "../weather-data.service";
 import {AirportWeatherService} from "../airport-weather.service";
+import {Weather} from "../weather";
 
 @Component({
   selector: 'app-search-box',
@@ -14,14 +13,17 @@ import {AirportWeatherService} from "../airport-weather.service";
   styleUrl: './search-box.component.scss'
 })
 export class SearchBoxComponent {
-  private airportWeather: AirportWeatherService = inject(AirportWeatherService)
+  private airportWeatherService: AirportWeatherService = inject(AirportWeatherService)
   searchText: string = ''
+  private weatherData: Weather[] = []
+
+  @Output() airportWeather: EventEmitter<Weather[]> = new EventEmitter<Weather[]>();
 
   constructor() {
   }
 
-  getAirportWeatherForecast(airport_code: string) {
-    this.airportWeather.getWeatherDataForAirport(airport_code)
+  async getAirportWeatherForecast(airport_code: string): Promise<void> {
+    this.weatherData = await this.airportWeatherService.getWeatherDataForAirport(airport_code)
+    this.airportWeather.emit(this.weatherData)
   }
-
 }

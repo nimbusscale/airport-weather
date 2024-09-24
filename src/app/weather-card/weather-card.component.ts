@@ -10,6 +10,6 @@ import {MatCardModule} from "@angular/material/card";
 })
 export class WeatherCardComponent {
   @Input() date!: string
-  @Input() high!: string
-  @Input() low!: string
+  @Input() high!: number
+  @Input() low!: number
 }

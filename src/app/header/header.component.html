@@ -2,7 +2,7 @@
     <img class="header" src="airportWeatherLogo.webp" alt="logo">
     <h1>Airport Weather</h1>
     <div class="search-box">
-          <app-search-box />
+          <app-search-box (airportWeather)="onWeatherDataReceived($event)"/>
     </div>
 
   </header>

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import dayjs from 'dayjs';
 import {Weather} from "./weather";
 import {lastValueFrom} from "rxjs";
@@ -40,12 +40,9 @@ export class WeatherDataService {
     )
   }
 
-  getWeatherDataForUpcomingDates(lat: string, lon: string, days = 3): void {
-    const upcomingDates = this.getUpcomingDates(days)
-    for (let date of upcomingDates) {
-      this.getWeatherDataForDate(date,  lat,  lon).then(
-        (weather) => console.log(weather)
-      )
-    }
+  async getWeatherDataForUpcomingDates(lat: string, lon: string, days = 3): Promise<Weather[]> {
+    const upcomingDates = this.getUpcomingDates(days);
+    const weatherPromises = upcomingDates.map(date => this.getWeatherDataForDate(date, lat, lon));
+    return await Promise.all(weatherPromises);
   }
 }

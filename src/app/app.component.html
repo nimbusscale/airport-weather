@@ -1,4 +1,4 @@
 <main>
-  <app-header />
-  <app-weather-output />
+  <app-header (airportWeather)="onWeatherDataReceived($event)"/>
+  <app-weather-output [airportWeather]="airportWeather"/>
 </main>

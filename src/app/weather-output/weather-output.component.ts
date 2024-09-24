@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {WeatherCardComponent} from "../weather-card/weather-card.component";
+import {Weather} from "../weather";
 
 @Component({
   selector: 'app-weather-output',
@@ -9,5 +10,5 @@ import {WeatherCardComponent} from "../weather-card/weather-card.component";
   styleUrl: './weather-output.component.scss'
 })
 export class WeatherOutputComponent {
-  @Input() weatherCards: WeatherCardComponent[] = []
+  @Input() airportWeather: Weather[] = []
 }
