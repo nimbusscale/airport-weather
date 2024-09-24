@@ -1,12 +1,10 @@
-
-
 export interface Weather {
-  lat: number,
-  long: number,
-  date: string,
-  units: string,
+  lat: number;
+  long: number;
+  date: string;
+  units: string;
   temperature: {
-    min: number,
-    max: number
-  }
+    min: number;
+    max: number;
+  };
 }
