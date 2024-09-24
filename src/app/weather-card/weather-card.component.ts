@@ -12,4 +12,9 @@ export class WeatherCardComponent {
   @Input() date!: string
   @Input() high!: number
   @Input() low!: number
+
+  convertTemp(temp: number): string {
+    const tempInF = (temp - 273.15) * 9/5 + 32
+    return tempInF.toFixed(1)
+  }
 }

@@ -4,11 +4,11 @@
   </mat-card-header>
   <mat-card-content>
     <div>
-      <span style="font-weight: bold;">High:</span> {{this.high}}
+      <span style="font-weight: bold;">High:</span> {{this.convertTemp(this.high)}}
     </div>
 
     <div>
-      <span style="font-weight: bold;">Low:</span> {{ this.low }}
+      <span style="font-weight: bold;">Low:</span> {{this.convertTemp(this.low)}}
     </div>
   </mat-card-content>
 </mat-card>
